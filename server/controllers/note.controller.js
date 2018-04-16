@@ -40,7 +40,7 @@ export function deleteNote(req, res) {
     }
     Lane.findOne({ id: note.laneId })
       .then(lane => {
-        const notesArray = lane.notes.filter(noteArr => noteArr.id !== req.params.noteId);
+        const notesArray = lane.notes.filter(singleNote => singleNote.id !== req.params.noteId);
         lane.update({ notes: notesArray }, (error) => {
           if (error) {
             res.status(500).send(error);
