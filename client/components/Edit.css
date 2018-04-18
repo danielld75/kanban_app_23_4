@@ -1,0 +1,11 @@
+.delete {
+  padding: 5px;
+}
+.value {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.value:hover {
+  cursor: pointer;
+  color: rgb(236, 61, 74);
+}

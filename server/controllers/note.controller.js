@@ -16,6 +16,7 @@ export function addNote(req, res) {
     task: note.task,
   });
   newNote.id = uuid();
+  newNote.laneId = laneId;
   newNote.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
@@ -40,7 +41,7 @@ export function deleteNote(req, res) {
     }
     Lane.findOne({ id: note.laneId })
       .then(lane => {
-        const notesArray = lane.notes.filter(singleNote => singleNote.id !== req.params.noteId);
+        const notesArray = lane.notes.filter(oneNote => oneNote.id !== req.params.noteId);
         lane.update({ notes: notesArray }, (error) => {
           if (error) {
             res.status(500).send(error);
@@ -53,12 +54,11 @@ export function deleteNote(req, res) {
 }
 
 export function editNote(req, res) {
-  const { note } = req.body;
-  if (!note || !note.task) {
-    res.status(400).end();
+  if (!req.body.task) {
+    res.status(403).end();
     return;
   }
-  Note.findOneAndUpdate({ id: req.params.noteId }, { $set: { task: note.task } }).exec((err, note) => {
+  Note.findOneAndUpdate({ id: req.params.noteId }, { $set: { task: req.body.task } }).exec((err, note) => {
     if (err) {
       res.status(500).send(err);
       return;
@@ -66,14 +66,3 @@ export function editNote(req, res) {
     res.json(note);
   });
 }
-
-// Note.findOne({ id: req.params.noteId })
-//   .then(note => {
-//     note.update({ task: req.body.task }, (err) => {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//       res.status(200).end();
-//     });
-//   });
-// }

@@ -1,4 +1,59 @@
-/* Lane styles */
-.AddLane, .Lanes {
-
+.AddLane {
+  padding: 10px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  font-family: 'Roboto', serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: crimson;
+}
+.appDiv {
+  text-align: center;
+}
+.Lanes {
+  display: flex;
+  justify-content: space-around;
+}
+.Lane {
+  padding: 20px;
+  background-color: rgb(159, 201, 121);
+  border: 1px solid;
+  width: 200px;
+  position: relative;
+}
+.LaneHeader {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 2px;
+}
+.LaneDelete {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.LaneDelete button {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  font-weight: bold;
+}
+.LaneDelete button:hover {
+  color: red;
+  cursor: pointer;
+}
+.LaneName, .LaneAddNote {
+  margin-bottom: 20px;
+}
+.LaneAddNote button {
+  padding: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.LaneName {
+  height: 35px;
+  font-size: 25px;
+  color: rgb(163, 4, 0);
+}
+.LaneName:hover {
+  cursor: pointer;
 }
