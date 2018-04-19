@@ -40,10 +40,6 @@ export function deleteNote(req, res) {
       return;
     }
     Lane.findOne({ id: note.laneId })
-      .catch(err => {
-        res.status(500).send(err);
-        return;
-      })
       .then(lane => {
         const notesArray = lane.notes.filter(oneNote => oneNote.id !== req.params.noteId);
         lane.update({ notes: notesArray }, (error) => {
@@ -53,6 +49,10 @@ export function deleteNote(req, res) {
           }
           res.status(200).end();
         });
+      })
+      .catch(err => {
+        res.status(500).send(err);
+        return;
       });
   });
 }
